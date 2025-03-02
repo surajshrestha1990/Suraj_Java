@@ -3,7 +3,7 @@ package CoreJava;
  * OOPS Concepts in Java with Examples --------
  * -----------------------------------
  * 1. Class and Object - Basic building blocks of Java OOP.
- * 2. Encapsulation - Hiding data using private access modifiers. private variables and public methods
+ * 2. Encapsulation - Hiding data using private access modifiers. private variables and allowing access via public methods
  * 3. Inheritance - Reusing code by extending classes.
  *      - Single Inheritance: One class extends another.
  *      - Multilevel Inheritance: A class extends another class, which in turn extends another class.
