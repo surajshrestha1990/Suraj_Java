@@ -21,14 +21,15 @@ package CoreJava;
  * - Java follows the "Write Once, Run Anywhere" principle using OOP.
  */
 
+
 // 1. Class and Object Example
 class Car {
-    String brand;
-    int speed;
+    String brand; // Instance variable
+    int speed;   // Instance variable
 
     // Default Constructor
     Car() {
-        this.brand = "Unknown";
+        this.brand = "Unknown"; // 'this' refers to the current object instance
         this.speed = 0;
     }
 
@@ -50,9 +51,9 @@ class Car {
     }
 }
 
-// 2. Encapsulation Example
+// 2. Encapsulation Example (Using private variables & public methods)
 class Person {
-    private String name;
+    private String name; // Private access modifier restricts direct access
     private int age;
 
     public void setDetails(String name, int age) {
@@ -68,21 +69,21 @@ class Person {
 // 3. Inheritance Examples
 
 // Single Inheritance Example (Car -> ElectricCar)
-class ElectricCar extends Car {
+class ElectricCar extends Car { // 'extends' enables inheritance
     int batteryCapacity;
 
     ElectricCar(String brand, int speed, int batteryCapacity) {
-        super(brand, speed);
+        super(brand, speed); // 'super' calls the parent class constructor
         this.batteryCapacity = batteryCapacity;
     }
 
     void displayElectricCar() {
-        displayCar();
+        displayCar(); // Calls parent class method
         System.out.println("Battery Capacity: " + batteryCapacity + " kWh");
     }
 }
 
-// Multilevel Inheritance (Vehicle -> Car -> ElectricCar)
+// Multilevel Inheritance Example (Vehicle -> AdvancedCar -> AdvancedElectricCar)
 class Vehicle {
     String type;
 
@@ -99,7 +100,7 @@ class AdvancedCar extends Vehicle {
     String brand;
 
     AdvancedCar(String brand) {
-        super("Car");
+        super("Car"); // Calls the parent class constructor
         this.brand = brand;
     }
 
@@ -123,6 +124,7 @@ class AdvancedElectricCar extends AdvancedCar {
     }
 }
 
+
 // Hierarchical Inheritance Example (Car -> ElectricCar and Car -> Truck)
 class Truck extends Car {
     int loadCapacity;
@@ -138,9 +140,10 @@ class Truck extends Car {
     }
 }
 
-// 4. Polymorphism Example
+
+// 4. Polymorphism Example (Method Overloading and Overriding)
 class Calculator {
-    // Method Overloading
+    // Method Overloading (Compile-time Polymorphism)
     int add(int a, int b) {
         return a + b;
     }
@@ -151,7 +154,7 @@ class Calculator {
 }
 
 class AdvancedCalculator extends Calculator {
-    // Method Overriding
+    // Method Overriding (Run-time Polymorphism)
     @Override
     int add(int a, int b) {
         System.out.println("Overridden Method in AdvancedCalculator");
@@ -161,7 +164,7 @@ class AdvancedCalculator extends Calculator {
 
 // 5. Abstraction Example
 abstract class Animal {
-    abstract void makeSound();
+    abstract void makeSound(); // Abstract method (no implementation)
 }
 
 class Dog extends Animal {
@@ -173,14 +176,14 @@ class Dog extends Animal {
 
 // 6. Multiple Inheritance via Interface
 interface Engine {
-    void startEngine();
+    void startEngine(); // Interface method (must be implemented)
 }
 
 interface Wheels {
     void rotateWheels();
 }
 
-class Bike implements Engine, Wheels {
+class Bike implements Engine, Wheels { // Implements multiple interfaces
     @Override
     public void startEngine() {
         System.out.println("Bike Engine Started");
@@ -192,7 +195,7 @@ class Bike implements Engine, Wheels {
     }
 }
 
-// 9. Immutable Class Example
+// 7. Immutable Class Example
 final class ImmutablePerson {
     private final String name;
     private final int age;
@@ -211,31 +214,31 @@ final class ImmutablePerson {
     }
 }
 
-// Static Keyword Usage
+// 8. Static Keyword Example
 class StaticExample {
-    static int count = 0;
+    static int count = 0; // Static variable shared by all objects
 
     StaticExample() {
         count++;
     }
 
-    static void showCount() {
+    static void showCount() { // Static method
         System.out.println("Total Objects Created: " + count);
     }
 }
 
-// Final Keyword Usage
-final class FinalClass {
-    final int constantValue = 100; // Cannot be changed
+// 9. Final Keyword Usage
+final class FinalClass { // 'final' class cannot be inherited
+    final int constantValue = 100; // Constant value
 
-    final void show() {
+    final void show() { // 'final' method cannot be overridden in subclass
         System.out.println("This is a final method.");
     }
 }
 
 public class _5_OOPConcepts {
     public static void main(String[] args) {
-        // Class and Object
+        // Class and Object Example
         Car car1 = new Car("Toyota", 180);
         car1.displayCar();
 
@@ -243,16 +246,16 @@ public class _5_OOPConcepts {
         Car car2 = new Car(car1);
         car2.displayCar();
 
-        // Encapsulation
+        // Encapsulation Example
         Person person = new Person();
         person.setDetails("John", 30);
         person.getDetails();
 
-        // Single Inheritance
+        // Single Inheritance Example
         ElectricCar eCar = new ElectricCar("Tesla", 200, 75);
         eCar.displayElectricCar();
 
-        // Multilevel Inheritance
+        // Multilevel Inheritance Example
         AdvancedElectricCar advECar = new AdvancedElectricCar("Lucid", 120);
         advECar.displayAdvancedElectricCar();
 
@@ -260,7 +263,7 @@ public class _5_OOPConcepts {
         Truck truck = new Truck("Volvo", 100, 15);
         truck.displayTruck();
 
-        // Polymorphism
+        // Polymorphism Example
         Calculator calc = new Calculator();
         System.out.println("Addition (2 numbers): " + calc.add(5, 10));
         System.out.println("Addition (3 numbers): " + calc.add(5, 10, 15));
@@ -268,7 +271,7 @@ public class _5_OOPConcepts {
         AdvancedCalculator advCalc = new AdvancedCalculator();
         System.out.println("Overridden Addition: " + advCalc.add(5, 10));
 
-        // Abstraction
+        // Abstraction Example
         Animal myDog = new Dog();
         myDog.makeSound();
 
@@ -277,11 +280,11 @@ public class _5_OOPConcepts {
         myBike.startEngine();
         myBike.rotateWheels();
 
-        // Immutable Class
+        // Immutable Class Example
         ImmutablePerson immutablePerson = new ImmutablePerson("Alice", 25);
         System.out.println("Immutable Person: " + immutablePerson.getName() + ", Age: " + immutablePerson.getAge());
 
-        // Static Example
+        // Static Keyword Example
         StaticExample obj1 = new StaticExample();
         StaticExample obj2 = new StaticExample();
         StaticExample.showCount();
