@@ -42,7 +42,7 @@ public class _2_Java8Features {
         System.out.println("Length of 'Java8': " + lengthFunction.apply("Java8"));
 
         // 3. Stream API Example - Used to process collections efficiently
-        List<String> names = Arrays.asList("Alice", "Bob", "Charlie", "David");
+        List<String> names = Arrays.asList("Alice","Anoop", "Bob", "Charlie", "David");
         System.out.print("Filtered Names (Start with A): ");
         names.stream()
                 .filter(name -> name.startsWith("A")) // Filters names starting with 'A'
@@ -52,6 +52,16 @@ public class _2_Java8Features {
         int sum = numbers.stream()
                 .reduce(0, Integer::sum); // Accumulates sum of all numbers
         System.out.println("Sum of numbers: " + sum);
+
+        // Accessing elements
+        System.out.println("First Name: " + names.get(0)); // Alice
+
+        // Modifying an element
+        names.set(1, "Ankit");
+        System.out.println("Updated List: " + names);
+
+        // This will throw an error (UnsupportedOperationException)
+        // names.add("Eve");
 
         // 4. Optional Class Example - Prevents NullPointerException
         Optional<String> optionalString = Optional.of("Hello, Optional!");
