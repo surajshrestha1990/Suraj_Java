@@ -34,35 +34,35 @@ public class _2_Java8Features {
         };
         r1.run();
 
-// Using Lambda (concise and readable)
+        // Using Lambda (concise and readable)
         Runnable r = () -> System.out.println("Lambda Expression Example");
         r.run();
 
-// 1.2. Using lambda with functional interfaces (Common real-world use cases)
+        // 1.2. Using lambda with functional interfaces (Common real-world use cases)
 
-// Sorting a list of strings using lambda
+    // Sorting a list of strings using lambda
         List<String> nameList = Arrays.asList("John", "Jane", "Alice", "Bob");
         nameList.sort((a, b) -> a.compareToIgnoreCase(b));
         System.out.println("Sorted names: " + nameList);
 
-// 1.3. Using lambda with Streams API (frequently used in real-world applications)
+        // 1.3. Using lambda with Streams API (frequently used in real-world applications)
         List<Integer> numberList = Arrays.asList(1, 2, 3, 4, 5, 6, 7, 8, 9, 10);
         List<Integer> evenNumbers = numberList.stream()
                 .filter(n -> n % 2 == 0)
                 .collect(Collectors.toList());
         System.out.println("Even Numbers: " + evenNumbers);
 
-// 1.4. Implementing Functional Interface using lambda (Example: Predicate)
+        // 1.4. Implementing Functional Interface using lambda (Example: Predicate)
         Predicate<Integer> isEvenno = n -> n % 2 == 0;
         System.out.println("Is 4 even? " + isEvenno.test(4)); // true
         System.out.println("Is 7 even? " + isEvenno.test(7)); // false
 
-// 1.5. Using lambda in a custom thread execution (Common real-world use case)
+        // 1.5. Using lambda in a custom thread execution (Common real-world use case)
         ExecutorService executor = Executors.newSingleThreadExecutor();
         executor.submit(() -> System.out.println("Task executed using lambda!"));
         executor.shutdown();
 
-// 1.6. Using lambda for event handling (GUI applications)
+        // 1.6. Using lambda for event handling (GUI applications)
         JButton button = new JButton("Click Me");
         button.addActionListener(e -> System.out.println("Button clicked!"));
 
