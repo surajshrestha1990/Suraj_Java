@@ -1,5 +1,5 @@
 /*
- * Java 8 Features - Easy Explanation
+ * Java 8 Features
  * -----------------------------------------
  * Key Points:
  * - Java 8 introduced powerful features to enhance functional programming and improve code readability and performance.
@@ -15,6 +15,7 @@
 package AdvancedJava;
 import java.util.*;
 import java.util.function.*;
+import java.util.stream.Collectors;
 
 public class _2_Java8Features {
     public static void main(String[] args) {
@@ -80,6 +81,48 @@ public class _2_Java8Features {
 
         // Uncommenting this will throw an error (UnsupportedOperationException)
         // names.add("Eve"); // Lists created with Arrays.asList() are immutable
+
+        // --------------- Additional Stream API Methods ---------------
+
+        // Convert all names to uppercase
+        List<String> upperCaseNames = names.stream()
+                .map(String::toUpperCase) // Converts each name to uppercase
+                .collect(Collectors.toList());
+        System.out.println("Uppercase Names: " + upperCaseNames);
+
+        // Sort the list alphabetically
+        List<String> sortedNames = names.stream()
+                .sorted()
+                .collect(Collectors.toList());
+        System.out.println("Sorted Names: " + sortedNames);
+
+        // Count the number of names containing the letter 'o'
+        long countO = names.stream()
+                .filter(name -> name.contains("o"))
+                .count();
+        System.out.println("Number of names containing 'o': " + countO);
+
+        // Find the first name longer than 3 characters
+        Optional<String> firstLongName = names.stream()
+                .filter(name -> name.length() > 3)
+                .findFirst();
+        firstLongName.ifPresent(name -> System.out.println("First long name: " + name));
+
+        // Collect names into a single comma-separated string
+        String joinedNames = names.stream()
+                .collect(Collectors.joining(", "));
+        System.out.println("Joined Names: " + joinedNames);
+
+        // Create a list of squared numbers
+        List<Integer> squaredNumbers = numbers.stream()
+                .map(num -> num * num) // Square each number
+                .collect(Collectors.toList());
+        System.out.println("Squared Numbers: " + squaredNumbers);
+
+        // Parallel stream to process numbers faster
+        int parallelSum = numbers.parallelStream()
+                .reduce(0, Integer::sum);
+        System.out.println("Parallel Sum of numbers: " + parallelSum);
 
         // 4. Optional Class Example - Prevents NullPointerException
         // Real-world use: Safely handle null values in your code.
