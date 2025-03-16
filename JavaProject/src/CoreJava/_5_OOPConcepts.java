@@ -229,7 +229,7 @@ class StaticExample {
 
 // 9. Final Keyword Usage
 final class FinalClass { // 'final' class cannot be inherited
-    final int constantValue = 100; // Constant value
+    final int constantValue = 100; // final variable is Constant value
 
     final void show() { // 'final' method cannot be overridden in subclass
         System.out.println("This is a final method.");
