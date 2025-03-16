@@ -9,7 +9,7 @@
  *   2. Functional Interfaces - Interfaces with only one abstract method (SAM interfaces).
  *      - Examples: Predicate, Consumer, Supplier, Function
  *   3. Stream API - A modern way to process collections efficiently.
- *      - Methods: filter, map, reduce, sorted, collect
+ *      - Methods: filter, map, reduce, sorted, collect, flatMap, distinct, limit, skip, forEach, anyMatch, allMatch, noneMatch, findFirst, findAny, count, min, max
  *   4. Optional Class - Helps avoid NullPointerExceptions by handling null values gracefully.
  */
 package AdvancedJava;
@@ -123,6 +123,74 @@ public class _2_Java8Features {
         int parallelSum = numbers.parallelStream()
                 .reduce(0, Integer::sum);
         System.out.println("Parallel Sum of numbers: " + parallelSum);
+
+        // flatMap - Flattens nested structures (e.g., list of lists into a single list)
+        List<List<String>> nestedNames = Arrays.asList(
+                Arrays.asList("Alice", "Bob"),
+                Arrays.asList("Charlie", "David")
+        );
+        List<String> flatNames = nestedNames.stream()
+                .flatMap(List::stream) // Flattens the nested lists
+                .collect(Collectors.toList());
+        System.out.println("Flattened Names: " + flatNames); // Output: [Alice, Bob, Charlie, David]
+
+        // distinct - Removes duplicates from the stream
+        List<String> uniqueNames = names.stream()
+                .distinct() // Removes duplicate "Alice"
+                .collect(Collectors.toList());
+        System.out.println("Unique Names: " + uniqueNames); // Output: [Alice, Ankit, Bob, Charlie, David]
+
+        // limit - Limits the number of elements in the stream
+        List<String> limitedNames = names.stream()
+                .limit(3) // Takes only the first 3 elements
+                .collect(Collectors.toList());
+        System.out.println("Limited Names: " + limitedNames); // Output: [Alice, Ankit, Bob]
+
+        // skip - Skips the first N elements in the stream
+        List<String> skippedNames = names.stream()
+                .skip(2) // Skips the first 2 elements
+                .collect(Collectors.toList());
+        System.out.println("Skipped Names: " + skippedNames); // Output: [Bob, Charlie, David]
+
+        // anyMatch - Checks if any element matches the condition
+        boolean hasAlice = names.stream()
+                .anyMatch(name -> name.equals("Alice")); // Checks if "Alice" exists
+        System.out.println("Has Alice? " + hasAlice); // Output: true
+
+        // allMatch - Checks if all elements match the condition
+        boolean allStartWithA = names.stream()
+                .allMatch(name -> name.startsWith("A")); // Checks if all names start with 'A'
+        System.out.println("All start with A? " + allStartWithA); // Output: false
+
+        // noneMatch - Checks if no elements match the condition
+        boolean noneStartWithZ = names.stream()
+                .noneMatch(name -> name.startsWith("Z")); // Checks if no names start with 'Z'
+        System.out.println("None start with Z? " + noneStartWithZ); // Output: true
+
+        // findFirst - Finds the first element in the stream
+        Optional<String> firstElement = names.stream()
+                .findFirst(); // Finds the first element
+        firstElement.ifPresent(System.out::println); // Output: Alice
+
+        // findAny - Finds any element in the stream (useful in parallel streams)
+        Optional<String> anyElement = names.stream()
+                .findAny(); // Finds any element
+        anyElement.ifPresent(System.out::println); // Output: Alice (or any other element)
+
+        // count - Counts the number of elements in the stream
+        long count = names.stream()
+                .count(); // Counts the total elements
+        System.out.println("Total Names: " + count); // Output: 5
+
+        // min - Finds the minimum element based on a comparator
+        Optional<String> minName = names.stream()
+                .min(Comparator.naturalOrder()); // Finds the lexicographically smallest name
+        minName.ifPresent(System.out::println); // Output: Alice
+
+        // max - Finds the maximum element based on a comparator
+        Optional<String> maxName = names.stream()
+                .max(Comparator.naturalOrder()); // Finds the lexicographically largest name
+        maxName.ifPresent(System.out::println); // Output: David
 
         // 4. Optional Class Example - Prevents NullPointerException
         // Real-world use: Safely handle null values in your code.
