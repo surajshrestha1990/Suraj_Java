@@ -20,6 +20,17 @@ public class _2_Java8Features {
     public static void main(String[] args) {
         // 1. Lambda Expressions - Used to implement functional interfaces
         // Instead of writing a full anonymous class, we use -> to define behavior concisely
+
+        // Traditional way using Anonymous class
+        Runnable r1 = new Runnable() {
+            @Override
+            public void run() {
+                System.out.println("Hello from traditional way!");
+            }
+        };
+        r1.run();
+
+        // Using Lambda
         Runnable r = () -> System.out.println("Lambda Expression Example");
         r.run();
 
